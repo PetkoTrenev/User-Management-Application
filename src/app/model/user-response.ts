@@ -1,7 +1,7 @@
-import {UserInfo} from './user';
+import {User} from './user';
 
 export interface UserResponse {
-  users: UserInfo[];
+  users: User[];
   totalElements: number;
   totalPages: number;
 }
