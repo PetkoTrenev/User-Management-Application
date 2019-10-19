@@ -1,0 +1,32 @@
+<form [formGroup]="userForm" class="normal-form" (submit)="submitRegistration()">
+  <mat-grid-list cols="1" rowHeight="300px">
+    <mat-grid-tile>
+      <mat-form-field>
+        <input formControlName="firstName" matInput placeholder="First name*">
+        <mat-error>This field is mandatory.</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="lastName" matInput placeholder="Last Name*">
+        <mat-error>This field is mandatory.</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="email" matInput placeholder="Email*">
+        <mat-error>Invalid email address.</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="dateOfBirth" matInput [matDatepicker]="picker" placeholder="Date of birth*">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error>This field is mandatory.</mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid">Submit</button>
+        <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+        <button mat-button (click)="onClose()">
+          <mat-icon>close</mat-icon>
+        </button>
+
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
