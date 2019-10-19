@@ -6,16 +6,13 @@
 </div>
 <mat-table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="firstName">
-    <mat-header-cell *matHeaderCellDef mat-sort-header
-    >First name</mat-header-cell
-    >
+    <mat-header-cell *matHeaderCellDef mat-sort-header>First name
+    </mat-header-cell>
     <mat-cell *matCellDef="let user"> {{ user.firstName }} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="lastName">
-    <mat-header-cell *matHeaderCellDef mat-sort-header
-    >Last name</mat-header-cell
-    >
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Last name</mat-header-cell>
     <mat-cell *matCellDef="let user"> {{ user.lastName }} </mat-cell>
   </ng-container>
 
@@ -25,9 +22,7 @@
   </ng-container>
 
   <ng-container matColumnDef="dateOfBirth">
-    <mat-header-cell *matHeaderCellDef mat-sort-header
-    >Date of birth</mat-header-cell
-    >
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Date of birth</mat-header-cell>
     <mat-cell *matCellDef="let user"> {{ user.dateOfBirth }} </mat-cell>
   </ng-container>
 

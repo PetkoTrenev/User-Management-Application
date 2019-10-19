@@ -53,6 +53,7 @@ export class ViewUserComponent implements OnInit, AfterViewInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
+    dialogConfig.data = user;
     this.dialog.open(UpdateUserComponent, dialogConfig);
   }
 

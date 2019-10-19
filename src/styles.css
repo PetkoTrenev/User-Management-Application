@@ -11,6 +11,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   flex: 1 1 auto;
 }
 
+.full-width {
+  width: 100%;
+}
+
 /*notifications*/
 snack-bar-container.success {
   background-color: green;

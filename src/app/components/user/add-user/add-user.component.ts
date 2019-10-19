@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../service/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -38,7 +38,6 @@ export class AddUserComponent implements OnInit {
       this.userService.save(this.userForm.value).subscribe(() => {
         this.notificationService.success('Submitted successfully');
         this.dialogRef.close();
-        this.gotoUserList();
       });
     }
   }
@@ -49,9 +48,5 @@ export class AddUserComponent implements OnInit {
 
   onClose() {
     this.dialogRef.close();
-  }
-
-  private gotoUserList() {
-    this.router.navigate(['/users']);
   }
 }

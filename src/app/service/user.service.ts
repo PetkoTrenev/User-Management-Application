@@ -10,8 +10,6 @@ import {User} from '../model/user';
 export class UserService {
   baseUrl: string;
 
-  formData: User;
-
   constructor(private http: HttpClient) {
     this.baseUrl = 'http://localhost:8080/api/v1/users';
   }
