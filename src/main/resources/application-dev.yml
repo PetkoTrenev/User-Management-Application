@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: dev
+
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  datasource:
+    url: jdbc:postgresql://localhost:5432/user-management?useSSL=false&createDatabaseIfNotExist=true
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver

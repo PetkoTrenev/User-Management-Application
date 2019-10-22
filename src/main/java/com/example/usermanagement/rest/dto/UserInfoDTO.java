@@ -1,22 +1,36 @@
 package com.example.usermanagement.rest.dto;
 
+import java.time.LocalDate;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.example.usermanagement.common.constants.ValidationConstants;
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Builder;
 import lombok.Data;
 
-import javax.validation.constraints.Pattern;
-import java.time.LocalDate;
-
 @Data
 @Builder
-public class UserInfoDTO
-{
-    private String firstName;
-    private String lastName;
+public class UserInfoDTO {
+  private Long id;
 
-    @Pattern(regexp = "^[0-9?A-z0-9?]+(\\.)?[0-9?A-z0-9?]+@[A-z]+\\.[A-z]{3}.?[A-z]{0,3}$")
-    private String email;
+  @Length( min = 2, message = ValidationConstants.NAME_NUMBER_OF_LETTERS_VALIDATION_ )
+  @NotBlank( message = ValidationConstants.NAME_MANDATORY_FIELD )
+  private String firstName;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate dateOfBirth;
+  @Length( min = 2, message = ValidationConstants.NAME_NUMBER_OF_LETTERS_VALIDATION_ )
+  @NotBlank( message = ValidationConstants.NAME_MANDATORY_FIELD )
+  private String lastName;
+
+  @Email
+  @Length( max = 50, message = ValidationConstants.EMAIL_LENGTH )
+  @NotBlank( message = ValidationConstants.EMAIL_REGEX )
+  private String email;
+
+  @JsonFormat( shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" )
+  private LocalDate dateOfBirth;
 }

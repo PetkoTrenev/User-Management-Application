@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
@@ -13,17 +14,15 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "app_user")
-public class User
-{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+@Table( name = "app_user" )
+public class User {
+  @Id
+  @GeneratedValue( strategy = GenerationType.AUTO )
+  private Long id;
 
-    private String firstName;
-    private String lastName;
-    private LocalDate dateOfBirth;
-
-    private String email;
+  private String    firstName;
+  private String    lastName;
+  private LocalDate dateOfBirth;
+  private String    email;
 
 }
