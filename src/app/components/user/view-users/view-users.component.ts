@@ -4,14 +4,18 @@ import {UserService} from '../../../service/user.service';
 import {Router} from '@angular/router';
 import {AddUserComponent} from '../add-user/add-user.component';
 import {UpdateUserComponent} from '../update-user/update-user.component';
+import {NotificationService} from '../../../service/notification.service';
+import {DialogService} from '../../../service/dialog.service';
+import {User} from '../../../model/user';
 
 @Component({
   selector: 'app-user-view',
-  templateUrl: './view-user.component.html',
-  styleUrls: ['./view-user.component.css']
+  templateUrl: './view-users.component.html',
+  styleUrls: ['./view-users.component.css']
 })
-export class ViewUserComponent implements OnInit, AfterViewInit {
+export class ViewUsersComponent implements OnInit, AfterViewInit {
 
+  users: User[];
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['firstName', 'lastName', 'email', 'dateOfBirth', 'actions'];
 
@@ -22,10 +26,18 @@ export class ViewUserComponent implements OnInit, AfterViewInit {
 
   totalPeople: number;
 
-  constructor(private userService: UserService, private router: Router, private dialog: MatDialog) { }
+  constructor(private userService: UserService,
+              private router: Router,
+              private notificationService: NotificationService,
+              private dialog: MatDialog,
+              private dialogService: DialogService) { }
 
   ngOnInit() {
     this.getUsers();
+    this.userService.usersSubject.subscribe((users) => {
+      this.users = users;
+      this.dataSource.data = this.users;
+    });
   }
 
   ngAfterViewInit() {
@@ -43,10 +55,14 @@ export class ViewUserComponent implements OnInit, AfterViewInit {
   }
 
   deleteUser(id) {
-    this.userService.delete(id).subscribe(() => {
-      this.getUsers();
+    this.dialogService.openConfirmDialog().afterClosed().subscribe(result => {
+        if (result) {
+          this.userService.delete(id).subscribe(() => {
+            this.notificationService.success('Success');
+            this.getUsers();
+          });
+        }
     });
-
   }
 
   updateUser(id, user) {

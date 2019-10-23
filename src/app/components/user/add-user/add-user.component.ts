@@ -19,7 +19,9 @@ export class AddUserComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
-    private dialogRef: MatDialogRef<AddUserComponent>) {
+    private dialogRef: MatDialogRef<AddUserComponent>) {}
+
+  ngOnInit() {
     this.userForm = new FormGroup({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
@@ -28,17 +30,11 @@ export class AddUserComponent implements OnInit {
     });
   }
 
-
-  ngOnInit() {
-
-  }
-
   submitRegistration() {
     if (this.userForm.valid) {
-      this.userService.save(this.userForm.value).subscribe(() => {
-        this.notificationService.success('Submitted successfully');
-        this.dialogRef.close();
-      });
+      this.userService.save(this.userForm.value);
+      this.notificationService.success('Submitted successfully');
+      this.dialogRef.close();
     }
   }
 

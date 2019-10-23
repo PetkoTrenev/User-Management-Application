@@ -10,7 +10,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {
   MatButtonModule,
-  MatDatepickerModule, MatDialogRef,
+  MatDatepickerModule, MatDialogModule, MatDialogRef,
   MatFormFieldModule,
   MatGridListModule, MatIconModule,
   MatInputModule,
@@ -20,8 +20,10 @@ import {
 import {UserService} from './service/user.service';
 import {UserComponent} from './components/user/user.component';
 import { UpdateUserComponent } from './components/user/update-user/update-user.component';
-import {ViewUserComponent} from './components/user/view-user/view-user.component';
+import {ViewUsersComponent} from './components/user/view-users/view-users.component';
 import {AddUserComponent} from './components/user/add-user/add-user.component';
+import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
+import {DialogService} from './service/dialog.service';
 
 // @ts-ignore
 @NgModule({
@@ -29,7 +31,8 @@ import {AddUserComponent} from './components/user/add-user/add-user.component';
     UserComponent,
     AddUserComponent,
     UpdateUserComponent,
-    ViewUserComponent
+    ViewUsersComponent,
+    MatConfirmDialogComponent
     ],
   imports: [BrowserModule,
     AppRoutingModule,
@@ -47,11 +50,11 @@ import {AddUserComponent} from './components/user/add-user/add-user.component';
     MatNativeDateModule,
     MatButtonModule,
     MatSnackBarModule, MatTableModule, MatIconModule, MatSortModule, MatPaginatorModule,
-    MatIconModule, FormsModule,
+    MatIconModule, FormsModule, MatDialogModule,
   ],
-  providers: [UserService, {provide: MatDialogRef, useValue: {}}],
+  providers: [UserService, DialogService, {provide: MatDialogRef, useValue: {}}],
   bootstrap: [AppComponent],
-  entryComponents: [AddUserComponent, UpdateUserComponent]
+  entryComponents: [AddUserComponent, UpdateUserComponent, MatConfirmDialogComponent]
 })
 export class AppModule {
 }

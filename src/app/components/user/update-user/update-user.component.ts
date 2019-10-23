@@ -2,6 +2,8 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {UserService} from '../../../service/user.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserResponse} from '../../../model/user-response';
+import {NotificationService} from '../../../service/notification.service';
 
 @Component({
   selector: 'app-update-user',
@@ -11,8 +13,10 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class UpdateUserComponent implements OnInit {
 
   userForm: FormGroup;
+  userResponse: UserResponse;
 
   constructor(private userService: UserService,
+              private notificationService: NotificationService,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private dialogRef: MatDialogRef<UpdateUserComponent>) { }
 
@@ -28,11 +32,9 @@ export class UpdateUserComponent implements OnInit {
   }
 
   updateUser() {
-    this.userService.updateUser(this.data.id, this.userForm.value)
-      .subscribe( () => {
-          this.dialogRef.close();
-        }
-      );
+    this.userService.updateUser(this.data.id, this.userForm.value);
+    this.notificationService.success('User updated successfully');
+    this.dialogRef.close();
   }
 
   onClear() {
